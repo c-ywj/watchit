@@ -1,0 +1,24 @@
+<html> 
+    <body> 
+        <!-- <div>
+            <form action="#" method="post">
+                <input type="text" name="organizationName" placeholder="Enter Organization Name"/> <br/>
+                <input type="text" name="departmentName" placeholder="Enter Department Name"/> <br/>
+                <input type="text" name="budget" placeholder="Enter Budget"/> <br/>
+                <button type="submit">Submit</button>
+            </form>
+        </div> -->
+
+        <h1>hihihi</h1>
+
+        <div>
+            <% for(var i=0; i < jsonData.length; i++) { %> 
+                <p>Watch ID: <%= jsonData[i].watchid%></p>
+                <ul> 
+                    <li>Model: <%= jsonData[i].modelname %></li>
+                    <li>Year: <%= jsonData[i].modelyear %></li>
+                </ul>
+            <% } %> 
+        </div>
+    </body> 
+</html> 
