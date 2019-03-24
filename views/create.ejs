@@ -1,0 +1,18 @@
+<%- layout('layout.ejs') %>
+<div>
+    <div class="page-header">
+        <h1 class="text-info">Watch Entry Form</h1>
+    </div>
+
+    <form action="/api/watches" method="post" >
+        <div class="form-group">
+            <input type="text" name="modelName" placeholder="Enter Model Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="modelYear" placeholder="Enter Model Year" class="form-control" />
+        </div>  
+        <input type="submit" value="Add Watch Entry" class="btn btn-primary" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/" class="btn btn-primary">Cancel</a>
+    </form>
+</div>

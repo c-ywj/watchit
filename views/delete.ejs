@@ -3,18 +3,18 @@
     <div class="page-header">
         <h1 class="text-info">Edit Course Information</h1>
     </div>
-    <form action="/api/watches/edit" method="post" >
+    <form action="/api/watches/delete" method="post" >
         <input type="hidden" name="_id" value="<%= jsonData._id %>" /><br />
         <div class="form-group">
             <input type="text" name="watchID" value="<%= jsonData.watchid %>" class="form-control"/>
-        </div>
+        </div>    
         <div class="form-group">
             <input type="text" name="modelName" value="<%= jsonData.modelname %>" class="form-control"/>
         </div>
         <div class="form-group">
             <input type="text" name="modelYear" value="<%= jsonData.modelyear %>" class="form-control"/>
         </div>
-        <input type="submit" value="Update Watch Entry" class="btn btn-primary" />
+        <input type="submit" value="Delete Watch Entry" class="btn btn-primary" />
         <a href="/api/watches" class="btn btn-primary" >Cancel</a>
     </form>
 </div> 
