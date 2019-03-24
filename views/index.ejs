@@ -1,24 +1,33 @@
-<html> 
-    <body> 
-        <!-- <div>
-            <form action="#" method="post">
-                <input type="text" name="organizationName" placeholder="Enter Organization Name"/> <br/>
-                <input type="text" name="departmentName" placeholder="Enter Department Name"/> <br/>
-                <input type="text" name="budget" placeholder="Enter Budget"/> <br/>
-                <button type="submit">Submit</button>
-            </form>
-        </div> -->
+<%- layout('layout.ejs') %>
 
-        <h1>Catalogue</h1>
+<!-- <div>
+    <form action="#" method="post">
+        <input type="text" name="organizationName" placeholder="Enter Organization Name"/> <br/>
+        <input type="text" name="departmentName" placeholder="Enter Department Name"/> <br/>
+        <input type="text" name="budget" placeholder="Enter Budget"/> <br/>
+        <button type="submit">Submit</button>
+    </form>
+</div> -->
 
-        <div>
-            <% for(var i=0; i < jsonData.length; i++) { %> 
-                <p>Watch ID: <%= jsonData[i].watchid%></p>
-                <ul> 
-                    <li>Model: <%= jsonData[i].modelname %></li>
-                    <li>Year: <%= jsonData[i].modelyear %></li>
-                </ul>
-            <% } %> 
-        </div>
-    </body> 
-</html> 
+<h1>Catalogue</h1>
+
+<div>
+    <table class="table table-bordered table-condensed">
+
+        <tr class="active">
+                <th>Model Name</th>
+                <th>Model Year</th>
+                <th></th>
+                <th></th>
+        </tr>
+
+        <% for(var i=0; i < jsonData.length; i++) { %>
+            <tr>
+                <td><%= jsonData[i].modelname %></td>
+                <td><%= jsonData[i].modelyear %></td>
+                <td><a href="/api/watches/edit/<%= jsonData[i].watchid %>" class="btn btn-primary btn-sm">Edit</a></td>
+                <td><a href="/api/watches/delete/<%= jsonData[i].watchid %>" class="btn btn-primary btn-sm">Delete</a></td>
+            </tr>
+        <% } %> 
+    </table>
+</div>

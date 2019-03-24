@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {Client} = require('pg');
+const knex = require('knex');
+const db = require('../database');
 
 const path = require('path');
 var dotenv = require('dotenv');
@@ -9,28 +11,32 @@ dotenv.config({ path: confPath });
 const PORT = process.env.PORT || 3000;
 
 router.get("/watches", (req, res, next) => {
-    let client = new Client({
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        host: process.env.DB_SERVER,
-        port: process.env.DB_PORT,
-        database: process.env.DB_NAME
-    });
-     
-    client.connect()
-    .then(() => console.log("connected successfully"))
-    .then(() => client.query("SELECT * FROM watches"))
+
+    db.select().from("watches")
     .then((data) => {
-        console.log("****result****: " + data.rows[0].modelname);
         res.render('index', {
-            jsonData: data.rows
-        });
-        client.end();
+            jsonData: data  
+        })
     })
-    .catch(err => console.log(err))
-    .finally(() => {
-        client.end();
+    .catch((err) => {
+        console.log(err);
+        res.send(err);
     });
-})
+});
+
+router.get("/watches/edit/:id", (req, res, next) => {
+
+    let watch = req.params.id;
+
+    db.select().from("watches").where('watchid', watch).first()
+    .then((data) => {
+        res.render('edit', {
+            jsonData: data
+        })
+    }).catch((err) => {
+        res.send(err);
+    })
+
+});
 
 module.exports = router;
