@@ -2,13 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
-const path = require('path');
-var dotenv = require('dotenv');
-let confPath = path.join(__dirname,'.env' );
-dotenv.config({ path: confPath });
-const PORT = process.env.PORT || 3000;
-
-
 // GET ALL
 router.get("/watches", (req, res, next) => {
 
@@ -17,20 +10,23 @@ router.get("/watches", (req, res, next) => {
         res.render('index', {
             jsonData: data  
         })
-    })
-    .catch((err) => {
+    }).catch((err) => {
         console.log(err);
         res.send(err);
     });
 });
 
+
 // CREATE FORM
 router.get("/watches/create", (req, res, next) => {
+
     res.render('create');
-})
+});
+
 
 // CREATE ONE
 router.post("/watches", (req, res, next) => {
+
     let watch = req.body;
 
     db("watches").insert({
@@ -62,8 +58,10 @@ router.get("/watches/edit/:id", (req, res, next) => {
     });
 });
 
+
 // EDIT ONE
 router.post("/watches/edit", (req, res, next) => {
+
     let watch = req.body;
 
     db('watches').where('watchid', '=', watch.watchID)
@@ -75,12 +73,13 @@ router.post("/watches/edit", (req, res, next) => {
         }).catch((err) => {
             console.log(err);
             res.send(err);
-        })
-
+        });
 });
+
 
 // CONFIRM DELETE
 router.get("/watches/delete/:id", (req, res, next) => {
+
     let watch = req.params.id;
 
     db.select().from("watches").where('watchid', watch).first()
@@ -93,8 +92,10 @@ router.get("/watches/delete/:id", (req, res, next) => {
         });
 })
 
+
 // DELETE ONE
 router.post("/watches/delete", (req, res, next) => {
+    
     let watch = req.body;
 
     db("watches").where('watchid', '=', watch.watchID)
@@ -105,7 +106,6 @@ router.post("/watches/delete", (req, res, next) => {
         }).catch((err) => {
             res.send(err);
         });
-
 });
 
 module.exports = router;

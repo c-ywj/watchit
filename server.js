@@ -11,9 +11,6 @@ let confPath = path.join(__dirname,'.env' );
 dotenv.config({ path: confPath });
 const PORT = process.env.PORT || 3000;
 
-// app.engine('html', require('ejs').renderFile); 
-// app.set('view engine', 'ejs'); 
-
 // View engine
 var ejsEngine = require("ejs-locals");
 app.engine("ejs", ejsEngine);           // support master pages
